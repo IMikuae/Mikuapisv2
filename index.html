@@ -3,48 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>RirisaApis</title>
     <style>
-        body {
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
             font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f0f0f0;
+            color: white;
+            overflow: hidden;
+        }
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://telegra.ph/file/aba81866f3459ad048fe9.jpg') no-repeat center center fixed;
+            background-size: cover;
         }
         .container {
-            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
         }
-        img {
-            max-width: 100%;
-            height: auto;
+        .typing {
+            font-size: 24px;
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: .15em solid orange;
+            animation: typing 4s steps(40, end), blink .75s step-end infinite;
         }
-        .dashboard-content {
-            display: none;
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
         }
-        .enter-button {
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+        .button {
             margin-top: 20px;
             padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
+            font-size: 16px;
+            color: #000;
+            background-color: #fff;
             border: none;
             cursor: pointer;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
+    <div class="background"></div>
     <div class="container">
-        <img src="https://telegra.ph/file/aba81866f3459ad048fe9.jpg" alt="Welcome Image">
-        <div class="enter-button" onclick="showDashboard()">Enter Dashboard</div>
-        <div class="dashboard-content">
-            <h1>Dashboard Utama</h1>
-            <p>Content goes here...</p>
-        </div>
+        <div class="typing">RirisaApis aktif</div>
+        <button class="button" onclick="window.location.href='/';">Masuk</button>
     </div>
-
-    <script>
-        function showDashboard() {
-            document.querySelector('.dashboard-content').style.display = 'block';
-            document.querySelector('.enter-button').style.display = 'none';
-        }
-    </script>
 </body>
 </html>

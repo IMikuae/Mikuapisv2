@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .dashboard-content {
+            display: none;
+        }
+        .enter-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="path-to-your-image.jpg" alt="Welcome Image">
+        <div class="enter-button" onclick="showDashboard()">Enter Dashboard</div>
+        <div class="dashboard-content">
+            <h1>Dashboard Utama</h1>
+            <p>Content goes here...</p>
+        </div>
+    </div>
+
+    <script>
+        function showDashboard() {
+            document.querySelector('.dashboard-content').style.display = 'block';
+            document.querySelector('.enter-button').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

@@ -15,27 +15,28 @@ app.use(secure);
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
-	res.sendFile(path.join(__dirname, "views", "home.html"));
+    res.sendFile(path.join(__dirname, "views", "home.html"));
 });
+
 app.get("/docs", (req, res) => {
-	res.sendFile(path.join(__dirname, "views", "index.html"));
+    res.sendFile(path.join(__dirname, "views", "index.html"));
 });
 
 app.use("/api", apirouter);
 
 // Error handling for unknown routes
 app.use((req, res, next) => {
-	res.status(404).json({ error: "Not Found" });
+    res.status(404).json({ error: "Not Found" });
 });
 
 // Error handling for other errors
 app.use((err, req, res, next) => {
-	console.error(err.stack);
-	res.status(500).json({ error: "Internal Server Error" });
+    console.error(err.stack);
+    res.status(500).json({ error: "Internal Server Error" });
 });
 
 app.listen(PORT, () => {
-	console.log("Server running on port " + PORT);
+    console.log("Server running on port " + PORT);
 });
 
 module.exports = app;

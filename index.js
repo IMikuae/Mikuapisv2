@@ -1,34 +1,41 @@
-const express = require('express');
-const axios = require('axios');
+const express = require("express");
+const cors = require("cors");
+const secure = require("ssl-express-www");
+const path = require("path");
 
 const app = express();
-const port = process.env.PORT || 3000;
 
-// Middleware untuk user authentication sederhana
+// Middleware
+app.use(cors());
+app.use(secure);
+app.use(express.static(path.join(__dirname, "public")));
+
+// Routes
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "views", "home.html"));
+});
+
+app.get("/docs", (req, res) => {
+    res.sendFile(path.join(__dirname, "views", "index.html"));
+});
+
+// Example API route
+app.use("/api", require("./api/routes/api"));
+
+// Error handling
 app.use((req, res, next) => {
-    const authToken = req.header('Authorization');
-    if (authToken === 'Bearer your-secret-token') {
-        next();
-    } else {
-        res.status(403).json({ error: 'Unauthorized' });
-    }
+    res.status(404).json({ error: "Not Found" });
 });
 
-// Contoh endpoint untuk scraping data
-app.get('/scrape', async (req, res) => {
-    try {
-        const response = await axios.get('https://example.com');
-        const data = response.data;
-        // Contoh sederhana pengambilan title dari halaman web
-        const title = data.match(/<title>(.*?)<\/title>/)[1];
-        res.json({ title });
-    } catch (error) {
-        res.status(500).json({ error: 'Error scraping data' });
-    }
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ error: "Internal Server Error" });
 });
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+// Listen on Vercel port or local port
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
 
 module.exports = app;

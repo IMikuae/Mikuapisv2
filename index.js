@@ -14,12 +14,14 @@ app.use(cors());
 app.use(secure);
 app.use(express.static(path.join(__dirname, "public")));
 
+// Route for the home page
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "views", "home.html"));
+    res.sendFile(path.join(__dirname, "views", "index.html")); // Serve index.html for root route
 });
 
+// Route for documentation
 app.get("/docs", (req, res) => {
-    res.sendFile(path.join(__dirname, "views", "index.html"));
+    res.sendFile(path.join(__dirname, "views", "index.html")); // Serve index.html for /docs route
 });
 
 app.use("/api", apirouter);

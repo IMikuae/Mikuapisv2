@@ -8,19 +8,8 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
-      "src": "/docs",
-      "dest": "/index.html"
-    },
-    {
-      "src": "/",
-      "dest": "/home.html"
+      "src": "/(.*)",
+      "dest": "/index.js"
     }
-  ],
-  "rewrites": [
-    { "source": "/", "destination": "/" }
   ]
 }
